@@ -1,0 +1,6 @@
+create State name="Texas"
+create State name="New_York"
+all State
+
+create Place city_id="0002" user_id="0002" name="Place_next_door" number_rooms=11 number_bathrooms=3 max_guest=13 price_by_night=600 latitude=37.667371 longitude=-122.324567
+all Place
