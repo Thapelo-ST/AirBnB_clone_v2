@@ -114,15 +114,58 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
+        """
+            Create an object of any class with optional parameters
+            syntax:
+            - string: "<value>" => starts with a double quote
+                    any double quote inside the value must be escaped with backlash /
+                    any and all underscores must be spaces
+            - float: <unit>.<decimal> => contains a dot .
+            - int: <number> => default case
+            any parameter that does not fit the requirements will be skipped
+        """
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+
+        args = args.split()
+
+        name = args[0]
+        if name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+
+        new_instance = HBNBCommand.classes[name]()
+        # process parameters if any
+        parameters = args[1:]
+        for param in parameters:
+            # split into key value pairs
+            key, value = param.split('=')
+
+            # process based on syntax
+            if value.startswith('"') and value.endswith('"'):
+                # if string filter quotes and replace underscores with spaces
+                value = value[1:-1].replace('_', ' ')
+            elif '.' in value:
+                # else if its float
+                try:
+                    value = float(value)
+                except ValueError:
+                    # disregard if not valid
+                    continue
+            else:
+                # else it's an integer
+                try:
+                    value = int(value)
+                except ValueError:
+                    # disregard if not valid
+                    continue
+            # set processed value to attribute
+            setattr(new_instance, key, value)
+        # save to storage
         storage.save()
+
+        # display ID of new object
         print(new_instance.id)
         storage.save()
 
