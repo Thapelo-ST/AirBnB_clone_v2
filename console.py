@@ -2,6 +2,7 @@
 """ Console Module """
 import cmd
 import sys
+import os
 from models.base_model import BaseModel
 from models.__init__ import storage
 from models.user import User
@@ -29,6 +30,14 @@ class HBNBCommand(cmd.Cmd):
              'max_guest': int, 'price_by_night': int,
              'latitude': float, 'longitude': float
             }
+
+    if "HBNB_TYPE_STORAGE" in os.environ and os.environ["HBNB_TYPE_STORAGE"] == "db":
+        from models.engine.db_storage import DBStorage
+        storage = DBStorage()
+    else:
+        from models.engine.file_storage import FileStorage
+        storage = FileStorage()
+    storage.reload()
 
     def preloop(self):
         """Prints if isatty is false"""
