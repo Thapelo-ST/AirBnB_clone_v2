@@ -9,7 +9,10 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-        """Returns a dictionary of models or filtered lists of models in storage"""
+        """
+        Returns a dictionary of models or
+        filtered lists of models in storage
+        """
         if cls is None:
             return FileStorage.__objects
         else:
