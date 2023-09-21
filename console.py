@@ -377,16 +377,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    # Construct the database URL using environment variables
-    db_user = os.getenv("HBNB_MYSQL_USER")
-    db_password = os.getenv("HBNB_MYSQL_PWD")
-    db_host = os.getenv("HBNB_MYSQL_HOST")
-    db_name = os.getenv("HBNB_MYSQL_DB")
-
-    # Create the database URL
-    db_url = f"mysql://{db_user}:{db_password}@{db_host}/{db_name}"
-
-    # Initialize SQLAlchemy engine
-    engine = create_engine(db_url)
-    
     HBNBCommand().cmdloop()
