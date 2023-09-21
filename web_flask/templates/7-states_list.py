@@ -14,7 +14,7 @@ app.url_map.strict_slashes = False
 
 @app.teardown_appcontext
 def close_db(exc):
-    """close the current session of sqlalchemist"""
+    """close the current session of sqlalchemy"""
     storage.close()
 
 
@@ -30,4 +30,4 @@ def states_list():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
-    app.run(debug=True)
+
