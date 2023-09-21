@@ -3,6 +3,8 @@
 import cmd
 import sys
 import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from models.base_model import BaseModel
 from models.__init__ import storage
 from models.user import User
@@ -11,6 +13,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -374,4 +377,16 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
+    # Construct the database URL using environment variables
+    db_user = os.getenv("HBNB_MYSQL_USER")
+    db_password = os.getenv("HBNB_MYSQL_PWD")
+    db_host = os.getenv("HBNB_MYSQL_HOST")
+    db_name = os.getenv("HBNB_MYSQL_DB")
+
+    # Create the database URL
+    db_url = f"mysql://{db_user}:{db_password}@{db_host}/{db_name}"
+
+    # Initialize SQLAlchemy engine
+    engine = create_engine(db_url)
+    
     HBNBCommand().cmdloop()
