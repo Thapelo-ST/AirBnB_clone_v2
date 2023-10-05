@@ -17,7 +17,7 @@ def do_deploy(archive_path):
     try:
         archive_name = archive_path.split("/")[-1]
         archive_no_ext = archive_name.replace(".tgz","")
-        remote_temp = "/tmp/{}".format(archive_name)
+        remote_tmp = "/tmp/{}".format(archive_name)
         remote_dest = "/data/web_static/releases/{}/".format(archive_no_ext)
 
         put(archive_path, remote_tmp)
@@ -26,9 +26,12 @@ def do_deploy(archive_path):
         run("rm {}".format(remote_tmp))
         run("mv {}web_static/* {}".format(remote_dest, remote_dest))
         run("rm -rf {}web_static".format(remote_dest))
+        print("Removing old symbolic link")
         run("rm -rf /data/web_static/current")
+        print("Symbolic link")
         run("ln -s {} /data/web_static/current".format(remote_dest))
         print("New version deployed!")
         return True
     except Exception:
+        print ("Deployment failed:", str(e))
         return False
