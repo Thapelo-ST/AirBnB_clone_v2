@@ -30,7 +30,7 @@ def do_deploy(archive_path):
         run("rm -rf /data/web_static/current")
 #        print("Symbolic link")
         run("ln -s {} /data/web_static/current".format(remote_dest))
-#        print("New version deployed!")
+        print("New version deployed!")
         return True
     except Exception:
         # print ("Deployment failed:", str(e))
