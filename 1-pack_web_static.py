@@ -12,10 +12,7 @@ def do_pack():
 
         local("mkdir -p versions")
 
-        # Create the .tgz archive
-        with settings(warn_only=True):
-            result = local("tar -czvf versions/{} web_static"
-                           .format(archive_name))
+        result = local("tar -czvf versions/{} web_static".format(archive_name))
 
         if result.succeeded:
             return "versions/{}".format(archive_name)
