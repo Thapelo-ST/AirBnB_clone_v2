@@ -26,12 +26,11 @@ def do_deploy(archive_path):
         run("rm {}".format(remote_tmp))
         run("mv {}web_static/* {}".format(remote_dest, remote_dest))
         run("rm -rf {}web_static".format(remote_dest))
-        print("Removing old symbolic link")
         run("rm -rf /data/web_static/current")
-        print("Symbolic link")
+#        print("Symbolic link")
         run("ln -s {} /data/web_static/current".format(remote_dest))
-        print("New version deployed!")
+#        print("New version deployed!")
         return True
     except Exception:
-        print ("Deployment failed:", str(e))
+#        print ("Deployment failed:", str(e))
         return False
