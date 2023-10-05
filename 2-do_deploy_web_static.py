@@ -7,7 +7,8 @@ from fabric.api import *
 from os import path
 
 env.user = 'ubuntu'
-env.hosts = ['34.227.93.64','3.85.54.154']
+env.hosts = ['34.227.93.64', '3.85.54.154']
+
 
 def do_deploy(archive_path):
     """Deploys an archive to the web servers."""
@@ -16,7 +17,7 @@ def do_deploy(archive_path):
 
     try:
         archive_name = archive_path.split("/")[-1]
-        archive_no_ext = archive_name.replace(".tgz","")
+        archive_no_ext = archive_name.replace(".tgz", "")
         remote_tmp = "/tmp/{}".format(archive_name)
         remote_dest = "/data/web_static/releases/{}/".format(archive_no_ext)
 
@@ -32,5 +33,5 @@ def do_deploy(archive_path):
 #        print("New version deployed!")
         return True
     except Exception:
-#        print ("Deployment failed:", str(e))
+        # print ("Deployment failed:", str(e))
         return False
