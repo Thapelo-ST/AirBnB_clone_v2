@@ -2,13 +2,19 @@
 """ displays hbnb """
 from flask import Flask
 
-app = Flask(__name__)
+hbnb = Flask(__name__)
 
-@app.route('/hbnb', strict_slashes=False)
-def hbnb():
+
+@hbnb.route('/', strict_slashes=False)
+def hello():
+    return 'Hello HBNB!'
+
+
+@hbnb.route('/hbnb', strict_slashes=False)
+def display_hbnb():
     """used to display hbnb"""
     return 'HBNB'
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    hbnb.run(host='0.0.0.0', port=5000)
