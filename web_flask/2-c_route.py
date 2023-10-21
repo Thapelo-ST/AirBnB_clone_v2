@@ -6,9 +6,9 @@ hbnb = Flask(__name__)
 
 
 @hbnb.route('/c/<text>', strict_slashes=False)
-def c_is(i):
+def c_is(text):
     """used to display C + inserted output"""
-    return 'C {}'.format(i)
+    return 'C {}'.format(text.replace("_", " "))
 
 
 if __name__ == '__main__':
