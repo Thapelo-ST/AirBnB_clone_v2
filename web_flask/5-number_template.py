@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ customized results based on input """
-from flask import Flask
-
+from flask import Flask, render_template
 hbnb = Flask(__name__)
 
 
@@ -33,6 +32,12 @@ def python_is(text='is_cool'):
 def is_number(n):
     """ Display n is a number if n is an integer """
     return '{} is a number'.format(n)
+
+
+@hbnb.route('/number_template/<int:n>', strict_slashes=False)
+def number_template(n):
+    """ returns a template displaying that the parsed arg is a number """
+    return render_template('templates/5-number.html', n=n)
 
 
 if __name__ == '__main__':
