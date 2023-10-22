@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" displays hbnb """
+""" displays the results based on input """
 from flask import Flask
 
 hbnb = Flask(__name__)
@@ -7,6 +7,7 @@ hbnb = Flask(__name__)
 
 @hbnb.route('/', strict_slashes=False)
 def hello():
+    """ function for displaying hello hbnb """
     return 'Hello HBNB!'
 
 
