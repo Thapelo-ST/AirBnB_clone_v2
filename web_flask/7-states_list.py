@@ -25,7 +25,8 @@ def states_list():
     States are sorted by name.
     """
     states = storage.all(State).values()
-    return render_template("7-states_list.html", states=states)
+    sorted_states = sorted(states, key=lambda state: state.name)
+    return render_template("7-states_list.html", states=sorted_states)
 
 
 if __name__ == "__main__":
