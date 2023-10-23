@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HBNB Filters</title>
+    <link rel="stylesheet" type="text/css" href="/static/6-filters.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">HBNB</h1>
+        <div class="filters">
+            <div class="popover">
+                <h3>&nbsp;</h3>
+                <div class="popover__content">
+                    <div class="filter">
+                        <h4>States</h4>
+                        <ul>
+                            {% for state in states %}
+                                <li>
+                                    <label class="check">
+                                        <input type="checkbox" class="states" data-id="{{ state.id }}">{{ state.name }}
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="filter">
+                        <h4>Cities</h4>
+                        <ul>
+                            {% for city in cities %}
+                                <li>
+                                    <label class="check">
+                                        <input type="checkbox" class="cities" data-id="{{ city.id }}">{{ city.name }}
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="filter">
+                        <h4>Amenities</h4>
+                        <ul>
+                            {% for amenity in amenities %}
+                                <li>
+                                    <label class="check">
+                                        <input type="checkbox" class="amenities" data-id="{{ amenity.id }}">{{ amenity.name }}
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
